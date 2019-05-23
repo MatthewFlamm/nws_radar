@@ -14,6 +14,7 @@ setup(
     author_email = "matthewflamm0@gmail.com",
     description = "Python library to get NWS radar images",
     packages=['nws_radar'],
+    include_package_data=True,
     install_requires=[
         'requests',
         'BeautifulSoup4',
