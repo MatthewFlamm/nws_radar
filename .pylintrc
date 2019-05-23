@@ -1,0 +1,6 @@
+
+[MESSAGES CONTROL]
+
+disable=
+    invalid-name,
+    too-many-instance-attributes
