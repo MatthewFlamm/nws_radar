@@ -13,4 +13,4 @@ radar.update()
 radar.image('radar.gif')
 ```
 
-[radar](images/radar.gif?raw=true "radar")
+![radar](images/radar.gif?raw=true "radar")
