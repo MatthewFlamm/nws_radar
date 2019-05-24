@@ -15,6 +15,14 @@ OVERLAYS = {
 }
 BASES = ['Topo']
 
+RADARS = ['NCR', 'N0R', 'N0S', 'N1P', 'NTP', 'N0Z']
+
+
+def validate_radar(radar):
+    """Validate distance/range."""
+    if radar not in RADARS:
+        raise ValueError("{} not valid range".format(radar))
+
 
 def validate_dis(dis):
     """Validate distance/range."""
@@ -51,14 +59,17 @@ def url_layer(layer, stn, dis):
 
 def url_radar(radar, stn):
     """Return url radar."""
+    validate_radar(radar)
     return FMT_RADAR.format(radar, stn)
 
 
 def url_legend(radar, stn):
     """Return url legend."""
+    validate_radar(radar)
     return FMT_LEGEND.format(radar, stn)
 
 
 def url_warning(radar, stn):
     """Return url warning."""
+    validate_radar(radar)
     return FMT_WARNING.format(radar, stn)

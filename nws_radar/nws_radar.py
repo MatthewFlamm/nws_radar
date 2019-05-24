@@ -146,7 +146,7 @@ class Nws_Radar:
         frames = [self._gen_frame(radar, legend, warning)
                   for radar, legend, warning in
                   zip(self._images_radar, self._images_legend, self._images_warning)]
-        if len(frames) > 0:
+        if frames:
             frames.extend([frames[-1]] * 2)
             frames[0].save(b, format='gif', save_all=True,
                            append_images=frames[1:], loop=0, duration=500)
