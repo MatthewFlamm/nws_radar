@@ -142,18 +142,21 @@ class Nws_Radar:
         If outfile, save to outfile.
         Else, return BytesIO object.
         """
+        b = BytesIO()
         frames = [self._gen_frame(radar, legend, warning)
                   for radar, legend, warning in
                   zip(self._images_radar, self._images_legend, self._images_warning)]
-        frames.extend([frames[-1]] * 2)
+        if len(frames) > 0:
+            frames.extend([frames[-1]] * 2)
+            frames[0].save(b, format='gif', save_all=True,
+                           append_images=frames[1:], loop=0, duration=500)
+        else:
+            Image.new('RGB', (600, 550)).save(b, format='gif')
         if outfile is not None:
-            frames[0].save(outfile, save_all=True, append_images=frames[1:], loop=0, duration=500)
-            return None
-
-        b = BytesIO()
-        frames[0].save(b, format='gif', save_all=True,
-                       append_images=frames[1:], loop=0, duration=500)
+            with open(outfile, 'wb') as fi:
+                fi.write(b.getvalue())
         return b.getvalue()
+
 
     def _gen_frame(self, image_radar, image_legend, image_warning):
         """Make a single frame."""

@@ -2,3 +2,4 @@ lib/
 *.egg*
 __pycache__
 .tox
+dist/
