@@ -69,7 +69,7 @@ def url_legend(radar, stn):
     return FMT_LEGEND.format(radar, stn)
 
 
-def url_warning(radar, stn):
+def url_warning(stn, dis):
     """Return url warning."""
-    validate_radar(radar)
-    return FMT_WARNING.format(radar, stn)
+    validate_dis(dis)
+    return FMT_WARNING.format(stn, dis)
