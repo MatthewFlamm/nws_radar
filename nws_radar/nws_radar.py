@@ -82,7 +82,10 @@ class Nws_Radar:
             url = url_layer(overlay, self.station, self.dist)
             imag = self.retrieve_image(url)
             image_overlays.append(imag.convert('RGBA'))
-        return image_overlays
+        image = image_overlays[0]
+        for overlay in image_overlays[1:]:
+            image.alpha_composite(overlay)
+        return image
 
     @staticmethod
     def _get_mult_files(url):
@@ -161,8 +164,7 @@ class Nws_Radar:
     def _gen_frame(self, image_radar, image_legend, image_warning):
         """Make a single frame."""
         image_comb = Image.alpha_composite(self._image_base, image_radar)
-        for overlay in self._image_overlays:
-            image_comb.alpha_composite(overlay)
+        image_comb.alpha_composite(self._image_overlays)
         image_comb.alpha_composite(image_legend)
         image_comb.alpha_composite(image_warning)
         return image_comb
