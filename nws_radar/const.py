@@ -1,5 +1,7 @@
 """Constants and utility functions."""
 
+FMT_LITE = 'https://radar.weather.gov/lite/{}/{}_{}.{}'
+
 FMT_BASE = 'http://radar.weather.gov/ridge/Overlays/{0}/{3}/{2}_{1}_{3}.jpg'
 FMT_LAYER = 'http://radar.weather.gov/ridge/Overlays/{0}/{3}/{2}_{1}_{3}.gif'
 FMT_RADAR = 'https://radar.weather.gov/ridge/RadarImg/{0}/{1}/'
@@ -42,6 +44,13 @@ def get_overlay(overlay):
         raise ValueError("{} not valid range".format(overlay))
     return OVERLAYS[overlay]
 
+
+def url_lite(product, station, loop):
+    """Return lite url."""
+    if loop:
+        return FMT_LITE.format(product, station, 'loop', 'gif')
+    else:
+        return FMT_LITE.format(product, station, '0', 'png')
 
 def url_base(base, stn, dis):
     """Return url base image."""
