@@ -2,8 +2,6 @@
 
 A python library to get radar images from NWS.
 
-Currently, only short range images are supported.
-
 ## Example
 
 ```python

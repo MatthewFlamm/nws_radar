@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name = "nws_radar",
-    version = "0.2.0",
+    version = "0.3.0",
     license='MIT License',
     long_description=long_description,
     long_description_content_type="text/markdown",
