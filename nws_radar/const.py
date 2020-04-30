@@ -8,6 +8,8 @@ FMT_RADAR = 'https://radar.weather.gov/ridge/RadarImg/{0}/{1}/'
 FMT_LEGEND = 'http://radar.weather.gov/ridge/Legend/{0}/{1}/'
 FMT_WARNING = 'http://radar.weather.gov/ridge/Warnings/{1}/{0}/'
 
+URL_MOSAIC = 'https://radar.weather.gov/ridge/Conus/RadarImg/'
+
 DISTANCES = ['Short', 'Long']
 OVERLAYS = {
     'Cities': 'City',
