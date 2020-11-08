@@ -1,25 +1,25 @@
 """Constants and utility functions."""
 
-FMT_LITE = 'https://radar.weather.gov/lite/{}/{}_{}.{}'
+FMT_LITE = "https://radar.weather.gov/lite/{}/{}_{}.{}"
 
-FMT_BASE = 'http://radar.weather.gov/ridge/Overlays/{0}/{3}/{2}_{1}_{3}.jpg'
-FMT_LAYER = 'http://radar.weather.gov/ridge/Overlays/{0}/{3}/{2}_{1}_{3}.gif'
-FMT_RADAR = 'https://radar.weather.gov/ridge/RadarImg/{0}/{1}/'
-FMT_LEGEND = 'http://radar.weather.gov/ridge/Legend/{0}/{1}/'
-FMT_WARNING = 'http://radar.weather.gov/ridge/Warnings/{1}/{0}/'
+FMT_BASE = "http://radar.weather.gov/ridge/Overlays/{0}/{3}/{2}_{1}_{3}.jpg"
+FMT_LAYER = "http://radar.weather.gov/ridge/Overlays/{0}/{3}/{2}_{1}_{3}.gif"
+FMT_RADAR = "https://radar.weather.gov/ridge/RadarImg/{0}/{1}/"
+FMT_LEGEND = "http://radar.weather.gov/ridge/Legend/{0}/{1}/"
+FMT_WARNING = "http://radar.weather.gov/ridge/Warnings/{1}/{0}/"
 
-URL_MOSAIC = 'https://radar.weather.gov/ridge/Conus/RadarImg/'
+URL_MOSAIC = "https://radar.weather.gov/ridge/Conus/RadarImg/"
 
-DISTANCES = ['Short', 'Long']
+DISTANCES = ["Short", "Long"]
 OVERLAYS = {
-    'Cities': 'City',
-    'County': 'County',
-    'Highways': 'Highways',
-    'RangeRings': 'RangeRing',
+    "Cities": "City",
+    "County": "County",
+    "Highways": "Highways",
+    "RangeRings": "RangeRing",
 }
-BASES = ['Topo']
+BASES = ["Topo"]
 
-RADARS = ['NCR', 'N0R', 'N0S', 'N1P', 'NTP', 'N0Z']
+RADARS = ["NCR", "N0R", "N0S", "N1P", "NTP", "N0Z"]
 
 
 def validate_radar(radar):
@@ -50,9 +50,10 @@ def get_overlay(overlay):
 def url_lite(product, station, loop):
     """Return lite url."""
     if loop:
-        return FMT_LITE.format(product, station, 'loop', 'gif')
+        return FMT_LITE.format(product, station, "loop", "gif")
     else:
-        return FMT_LITE.format(product, station, '0', 'png')
+        return FMT_LITE.format(product, station, "0", "png")
+
 
 def url_base(base, stn, dis):
     """Return url base image."""

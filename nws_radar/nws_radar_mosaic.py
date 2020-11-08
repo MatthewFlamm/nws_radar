@@ -10,21 +10,21 @@ from .const import URL_MOSAIC
 
 
 REGIONS = [
-    'NATAK',
-    'NATPR',
-    'NAT',
-    'CENTGRTLAKES',
-    'GREATLAKES',
-    'HAWAII',
-    'NORTHEAST',
-    'NORTHROCKIES',
-    'PACNORTHWEST',
-    'PACSOUTHWEST',
-    'SOUTHEAST',
-    'SOUTHMISSVLY',
-    'SOUTHPLAINS',
-    'SOUTHROCKIES',
-    'UPPERMISSVLY',
+    "NATAK",
+    "NATPR",
+    "NAT",
+    "CENTGRTLAKES",
+    "GREATLAKES",
+    "HAWAII",
+    "NORTHEAST",
+    "NORTHROCKIES",
+    "PACNORTHWEST",
+    "PACSOUTHWEST",
+    "SOUTHEAST",
+    "SOUTHMISSVLY",
+    "SOUTHPLAINS",
+    "SOUTHROCKIES",
+    "UPPERMISSVLY",
 ]
 
 
@@ -35,7 +35,7 @@ class Nws_Radar_Mosaic:
 
     def __init__(self, region, nframes=5):
         """Initialize."""
-    
+
         if region.upper() not in REGIONS:
             raise ValueError(f"{region} not in supported values: {REGIONS}")
         self.region = region.upper()
@@ -71,9 +71,9 @@ class Nws_Radar_Mosaic:
     def _get_mult_files(url):
         """Get list of GIFS at url."""
         res = requests.get(url)
-        soup = BeautifulSoup(res.content, 'html.parser')
+        soup = BeautifulSoup(res.content, "html.parser")
         links = soup.findAll(href=re.compile(r"\.gif$"))
-        files = [link.get('href') for link in links]
+        files = [link.get("href") for link in links]
         return files
 
     def _update_mult_images(self, url, files):
@@ -86,15 +86,13 @@ class Nws_Radar_Mosaic:
         images = []
         for f in file_urls[-nframes:]:
             imag = self.retrieve_image(f)
-            images.append(imag.convert('RGBA'))
+            images.append(imag.convert("RGBA"))
         return images
 
     def _validate_file_list(self):
         """Only keep matching files."""
-        self._files = [f for f in self._files
-                       if len(f.split('_')) == 3]
-        self._files = [f for f in self._files
-                       if f.split('_')[0].upper() == self.region]
+        self._files = [f for f in self._files if len(f.split("_")) == 3]
+        self._files = [f for f in self._files if f.split("_")[0].upper() == self.region]
 
     def image(self, outfile=None):
         """
@@ -107,11 +105,17 @@ class Nws_Radar_Mosaic:
         if self._images:
             frames = self._images.copy()
             frames.extend([frames[-1]] * 2)
-            frames[0].save(b, format='gif', save_all=True,
-                           append_images=frames[1:], loop=0, duration=500)
+            frames[0].save(
+                b,
+                format="gif",
+                save_all=True,
+                append_images=frames[1:],
+                loop=0,
+                duration=500,
+            )
         else:
-            Image.new('RGB', (600, 550)).save(b, format='gif')
+            Image.new("RGB", (600, 550)).save(b, format="gif")
         if outfile is not None:
-            with open(outfile, 'wb') as fi:
+            with open(outfile, "wb") as fi:
                 fi.write(b.getvalue())
         return b.getvalue()
